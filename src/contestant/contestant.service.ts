@@ -11,7 +11,7 @@ export class ContestantService {
   constructor(@InjectRepository(Contestant) private constestantsRepository: Repository<Contestant>) {}
 
   async findAll(): Promise<GetContestantDto[]> {
-    const contestants = await this.constestantsRepository.find({relations: ['votes']});
+    const contestants = await this.constestantsRepository.find({relations: ['votes'], order: {order: 'ASC'}});
     return this.contestantsToGetDto(contestants);
   }
 
@@ -30,13 +30,14 @@ export class ContestantService {
         newContestant.countryName = contestant.countryName;
         newContestant.votes = [];
         newContestant.eliminated = false;
+        newContestant.order = contestant.order;
         this.constestantsRepository.save(newContestant);
       }
     }
   }
 
   private contestantsToGetDto(contestants: Contestant[]): GetContestantDto[] {
-    return contestants.map((c) => new GetContestantDto(c)).sort((c1, c2) => c1.votes > c2.votes ? -1 : 1);
+    return contestants.map((c) => new GetContestantDto(c));
   }
 
 }

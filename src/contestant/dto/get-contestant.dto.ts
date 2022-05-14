@@ -9,6 +9,7 @@ export class GetContestantDto {
     singer: string;
     eliminated: boolean;
     votes: number;
+    order: number;
 
     constructor(contestant: Contestant, votes?: Vote[]) {
         const ranking = votes ? votes: contestant.votes;
@@ -18,6 +19,7 @@ export class GetContestantDto {
         this.songTitle = contestant.songTitle;
         this.singer = contestant.singer;
         this.eliminated = contestant.eliminated;
+        this.order = contestant.order;
         this.votes = ranking.reduce((prev, vote) => prev += vote.points, 0);
     }
 

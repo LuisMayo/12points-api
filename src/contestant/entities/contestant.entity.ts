@@ -29,4 +29,7 @@ export class Contestant {
     @OneToMany(() => Vote, vote => vote.contestant)
     votes: Vote[]
 
+    @Column()
+    order: number;
+
 }

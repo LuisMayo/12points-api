@@ -4,4 +4,5 @@ export class CreateContestantDto {
     songTitle: string;
     singer: string;
     eliminated: boolean;
+    order: number;
 }
