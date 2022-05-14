@@ -23,7 +23,7 @@ import { AppService } from './app.service';
       password: process.env.DB_PASS || 'root',
       database: process.env.DB_NAME || 'greenroom',
       entities: [Contestant, User, Vote, Room, Config],
-      synchronize: true,
+      synchronize: false,
     }),
     ContestantModule,
     UserModule,
